@@ -46,6 +46,7 @@ Request → Routes → Controllers → Services → Repositories → Models/Sche
          Middlewares
 ```
 
+
 ### Layer Responsibilities
 
 | Layer | Responsibility |
