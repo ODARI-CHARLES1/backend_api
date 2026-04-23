@@ -2,6 +2,7 @@ import cors from 'cors'
 import ConnectDB from './Config/mongodb.config.js'
 import express from 'express'
 import {config} from 'dotenv'
+import router from './Routes/data.route.js'
 
 config()
 const app=express()
@@ -14,6 +15,9 @@ app.get("/",(req,res)=>{
     res.send("Server running..")
 })
 
-ConnectDB();
+ConnectDB().then(()=>{
+    app.use("/api",router)
+    app.listen(PORT,()=>console.log("Server runnning..."))
+})
 
-app.listen(PORT,()=>console.log("Server runnning..."))
+
