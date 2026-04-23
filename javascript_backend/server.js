@@ -1,4 +1,5 @@
 import cors from 'cors'
+import ConnectDB from './Config/mongodb.config.js'
 import express from 'express'
 import {config} from 'dotenv'
 
@@ -12,5 +13,7 @@ const PORT=process.env.PORT || 3000
 app.get("/",(req,res)=>{
     res.send("Server running..")
 })
+
+ConnectDB();
 
 app.listen(PORT,()=>console.log("Server runnning..."))
