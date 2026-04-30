@@ -1,4 +1,4 @@
-import {saveDataService} from '../Services/data.services.js'
+import * as dataServices from '../Services/data.services.js'
 
 
 export const saveDataController =async(req,res)=>{
@@ -7,7 +7,7 @@ export const saveDataController =async(req,res)=>{
         if(!temperature || !humidity){
             return res.status(400).json({message:"Temperature and humidity are required"})
         }
-        const result=await saveDataService(temperature,humidity)
+        const result=await dataServices.saveDataService(temperature,humidity)
         res.status(201).json({message:"Data saved successfully",data:result})
     } catch (error) {
         console.log("error saving data in controller")
@@ -33,7 +33,7 @@ export const getDataController=async(req,res)=>{
 
 
 export const getDataByIdController=async(req,res)=>{
-    const {id}=req.params.id
+    const id=req.params.id
     try {
         if(id){
             const data=await dataServices.getDataByIdService(id)
