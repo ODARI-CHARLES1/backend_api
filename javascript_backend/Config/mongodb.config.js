@@ -1,19 +1,13 @@
-import mongoose from 'mongoose'
-
+import mongoose from 'mongoose';
+const uri="mongodb+srv://odaricharles23_db_user:1GDRwlP68mt42xbp@cluster0.dstbd8n.mongodb.net/?appName=Cluster0"
 const ConnectDB = async () => {
   try {
-    await mongoose.connect(process.env.MONGO_URL, {
-      serverApi: {
-        version: '1',
-        strict: true,
-        deprecationErrors: true,
-      },
-    })
-    console.log('DB connected successfully....')
+    const conn = await mongoose.connect(process.env.MONGODB_URI || uri );
+    console.log(`MongoDB Connected: ${conn.connection.host}`);
   } catch (error) {
-    console.error('Failed to connect to DB:', error)
-    process.exit(1)
+    console.error(`Error: ${error.message}`);
+    process.exit(1);
   }
-}
+};
 
-export default ConnectDB
+export default ConnectDB;
