@@ -30,3 +30,25 @@ export const getDataController=async(req,res)=>{
         res.status(500).json({message:"Internal server error"})
     }
 }
+
+
+export const getDataByIdController=async(req,res)=>{
+    const {id}=req.params.id
+    try {
+        if(id){
+            const data=await dataServices.getDataByIdService(id)
+            if(data){
+                return res.status(200).json({message:"Data retrieved successfully",data:data})
+            }
+            else{
+                return res.status(404).json({message:"retrieve data failed"})
+            }
+        }
+        else{
+            return res.status(404).json({message:"Provide data id"})
+        }
+    } catch (error) {
+        console.log("Error retrieving data in controller")
+        res.status(500).json({message:"Internal server error"})
+    }
+}
