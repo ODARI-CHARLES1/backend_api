@@ -1,7 +1,8 @@
 import mongoose from 'mongoose';
 
-// add your connection string here and uncommnet const uri after pasting you connection string
-//const uri=
+// add your connection string here and uncomment const uri after pasting you connection string
+//When pushing dont forget to leave the uri to an empty string.
+// const uri=""
 const ConnectDB = async () => {
   try {
     const conn = await mongoose.connect(process.env.MONGODB_URI || uri );
