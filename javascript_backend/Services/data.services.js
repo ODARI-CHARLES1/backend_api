@@ -35,3 +35,19 @@ export const getDataByIdService=async(id)=>{
         console.error("Failed to service dataByid",error)
     }
 }
+
+export const  updateDataByIdService=async(id,data_update)=>{
+    try {
+        if(id && data_update){
+            const data=dataRepository.updateDataById(id,data_update)
+            if(data){
+                return data
+            }
+            else{
+                return ;
+            }
+        }
+    } catch (error) {
+        console.error("Failed to service update data",error)
+    }
+}
