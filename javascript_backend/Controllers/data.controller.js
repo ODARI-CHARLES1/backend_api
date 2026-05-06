@@ -52,3 +52,28 @@ export const getDataByIdController=async(req,res)=>{
         res.status(500).json({message:"Internal server error"})
     }
 }
+
+
+export const updateDataByIdController=async(req,res)=>{
+    const id=req.params.id
+    const data_update=req.body
+    console.log(data_update)
+
+    try {
+            if(id && data_update){
+                const data=await dataServices.updateDataByIdService(id,data_update)
+                if(data){
+                    return res.status(200).json({message:"Data updated successfully",data:data})
+                }
+                else{
+                    return res.status(400).json({message:"Failed to update data"})
+                }
+            }
+            else{
+                return res.status(400).json({message:"Provide valid data"})
+            }
+    } catch (error) {
+        console.log("Error update data",error)
+        res.status(500).json({message:"Internal server error"})
+    }
+}
