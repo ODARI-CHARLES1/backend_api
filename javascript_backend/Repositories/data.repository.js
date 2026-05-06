@@ -49,3 +49,29 @@ export const getDataById=async(id)=>{
     throw error
   }
 }
+
+
+export const updateDataById=async(id,data_update)=>{
+  try {
+     const data=await getDataById(`${id}`)
+     if(data){
+      const update=data_update;
+      const filter={"_id":`${id}`}
+      const data=await Data.findOneAndUpdate(filter,update)
+      if(data){
+        return data
+      }
+      else{
+        return ;
+      }
+     }
+     else{
+      return ;
+     }
+
+  } catch (error) {
+    console.error(`Error update data with id ${id}`,error)
+    throw error
+  }
+}
+
